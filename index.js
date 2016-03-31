@@ -1,4 +1,6 @@
 require('babel-polyfill')
 require('babel-register')
-require('dotenv').load()
+if (!process.env.HEROKU) {
+  require('dotenv').load()
+}
 require('./server')
