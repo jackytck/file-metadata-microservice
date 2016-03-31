@@ -11,6 +11,12 @@ module.exports = function (app, passport) {
       if (!date.isValid()) {
         date = moment.unix(dateInput)
       }
+      if (!date.isValid()) {
+        return res.json({
+          unix: null,
+          date: null
+        })
+      }
       res.json({
         unix: date.unix(),
         date: date.format('MMMM DD, YYYY')
