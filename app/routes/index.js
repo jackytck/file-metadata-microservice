@@ -1,25 +1,16 @@
-import moment from 'moment'
+import requestIp from 'request-ip'
+import UA from 'user-agent'
 
 module.exports = function (app, passport) {
 	app.route('/')
-		.get((req, res) => res.end('API Basejump: Timestamp microservice'))
-
-  app.route('/:date')
-    .get((req, res) => {
-      const dateInput = req.params.date
-      let date = moment(`${dateInput} +0000`, 'MMMM DD, YYYY Z')
-      if (!date.isValid()) {
-        date = moment.unix(dateInput)
-      }
-      if (!date.isValid()) {
-        return res.json({
-          unix: null,
-          date: null
-        })
-      }
+		.get((req, res) => {
+      const ipaddress = requestIp.getClientIp(req)
+      const language = req.acceptsLanguages()[0] || 'en-US'
+      const software = UA.parse(req.headers['user-agent']).os
       res.json({
-        unix: date.unix(),
-        date: date.format('MMMM DD, YYYY')
+        ipaddress,
+        language,
+        software
       })
     })
 }

@@ -1,16 +1,9 @@
 ## Demo
-https://timestamp-jackytck.herokuapp.com
-
-## Example usage
-
-```
-https://localhost:8080/December%2003,%202016
-https://localhost:8080/1450137600
-```
+https://request-header-parser-jackytck.herokuapp.com
 
 ## Example output
 ```
-{ "unix": 1450137600, "natural": "December 03, 2016" }
+{"ipaddress":"::ffff:127.0.0.1","language":"en-US","software":"OS X 10.11"}
 ```
 
 ## License
