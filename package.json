@@ -36,10 +36,12 @@
     "express": "^4.12.4",
     "express-session": "^1.11.3",
     "moment": "^2.12.0",
-    "mongoose": "^4.1.0",
+    "mongoose": "^4.4.10",
     "passport": "^0.3.0",
     "passport-github": "^1.0.0",
     "request-ip": "^1.2.2",
-    "user-agent": "^1.0.4"
+    "uid2": "0.0.3",
+    "user-agent": "^1.0.4",
+    "validator": "^5.1.0"
   }
 }

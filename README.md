@@ -1,9 +1,12 @@
 ## Demo
-https://request-header-parser-jackytck.herokuapp.com
+https://url-shortener-microservice.herokuapp.com/new/https://www.google.com
 
 ## Example output
-```
-{"ipaddress":"::ffff:127.0.0.1","language":"en-US","software":"OS X 10.11"}
+```json
+{
+  "original_url": "https://www.google.com",
+  "short_url": "https://request-header-parser-jackytck.herokuapp.com/1CAw"
+}
 ```
 
 ## License
