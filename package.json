@@ -1,13 +1,13 @@
 {
-  "name": "timestamp-microservice",
+  "name": "file-metadata-microservice",
   "version": "1.0.1",
-  "description": "API Basejump: Timestamp microservice",
+  "description": "API Projects: File Metadata Microservice",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jackytck/timestamp-microservice"
+    "url": "git+https://github.com/jackytck/file-metadata-microservice"
   },
-  "bugs": "https://github.com/jackytck/timestamp-microservice/issues",
+  "bugs": "https://github.com/jackytck/file-metadata-microservice/issues",
   "keywords": [
     "MongoDB",
     "Mongoose",
