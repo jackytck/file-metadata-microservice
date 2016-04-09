@@ -1,0 +1,48 @@
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+  style.
+    #response {
+      color: red
+    }
+    a {
+      text-decoration: none
+    }
+    h3 {
+      margin-top: 30px
+    }
+  body
+    h1= pageTitle
+    h3 User Story
+    ul
+      li I can submit a FormData object that includes a file upload.
+      li When I submit something, I will receive the file size in bytes within the JSON response
+        
+    form#file-form(action='/api/fileanalyse' method='post' enctype='multipart/form-data')
+      input(type='file', name='the-file')
+      input(type='submit', value='Upload')
+      
+    h3 Response
+    p#response Press 'Choose File' to upload.
+      
+    h3 Source
+    p
+      a(href='https://github.com/jackytck/file-metadata-microservice') https://github.com/jackytck/file-metadata-microservice
+      
+    script(type='text/javascript').
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('file-form').addEventListener('submit', function (e) {
+          e.preventDefault()
+          var form = e.target
+          var data = new FormData(form)
+          var request = new XMLHttpRequest()
+          
+          request.onreadystatechange = function (){
+            document.getElementById('response').innerText = request.responseText
+          }
+          
+          request.open(form.method, form.action)
+          request.send(data)
+        })
+      })

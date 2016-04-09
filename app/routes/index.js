@@ -1,36 +1,16 @@
-import Search from 'bing.search'
-import bluebird from 'bluebird'
-import RecentSearch from '../models/recent-search'
-
-const search = new Search(process.env.BING_ACCOUNT_KEY)
-const imageSearch = bluebird.promisify(search.images, { context: search })
+import multer from 'multer'
+import fs from 'fs'
+const upload = multer({ dest: 'uploads/' })
 
 export default (app, passport) => {
   app.route('/')
     .get((req, res) => {
-      res.end('Image Search Abstraction Layer!')
+      res.render('index', { pageTitle: 'File Metadata Microservice!' })
     })
 
-  app.route('/api/imagesearch/:query')
-    .get(async (req, res) => {
-      const query = req.params.query
-      const skip = req.query.offset
-      const results = await imageSearch(query, { skip })
-      RecentSearch({ term: query }).save()
-      res.json(results.map(x => ({
-        url: x.url,
-        snippet: x.title,
-        thumbnail: x.thumbnail.url,
-        context: x.sourceUrl
-      })))
-    })
-
-  app.route('/api/latest/imagesearch')
-    .get(async (req, res) => {
-      const latest = await RecentSearch.find().limit(10).sort({ when: -1 })
-      res.json(latest.map(x => ({
-        term: x.term,
-        when: x.when
-      })))
-    })
+  app.post('/api/fileanalyse', upload.single('the-file'), (req, res, next) => {
+    const { size, path } = req.file
+    res.json({ fileSize: size })
+    fs.unlink(path)
+  })
 }

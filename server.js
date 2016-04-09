@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import passport from 'passport'
 import session from 'express-session'
 import appPassport from './app/config/passport'
+import path from 'path'
 
 const app = express()
 appPassport(passport)
@@ -21,6 +22,9 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.set('view engine', 'jade')
+app.set('views', path.join(__dirname, 'app/templates'))
 
 routes(app, passport)
 
